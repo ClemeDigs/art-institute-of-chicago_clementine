@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    margin: 0;
+    font-family: "Merriweather", serif;
+    min-height: 100vh;
+    gap: 3rem;
+}
+
+main {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-grow: 1;
+}

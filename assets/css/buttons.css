@@ -1,0 +1,54 @@
+.btn-search {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    border: 1px solid black;
+    background-color: var(--wine);
+    border-radius: 0 20px 20px 0;
+    padding: 4px 16px 5px 16px;
+    cursor: pointer;
+    color: beige;
+    font-family: "Merriweather", serif;
+    transition: 0.3s;
+}
+
+.btn-search:hover {
+    background-color: #6a0d26;
+}
+
+.btn-primary {
+    background-color: var(--wine);
+    border: 1px solid beige;
+    border-radius: 20px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    color: beige;
+    font-family: "Merriweather", serif;
+    transition: 0.3s;
+}
+
+.btn-primary:hover, .btn-pager:hover {
+    box-shadow: 5px 5px 20px 5px #29010c48;
+}
+
+.btn-pager {
+    background-color: var(--wine);
+    border: 1px solid beige;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: beige;
+    font-family: "Merriweather", serif;
+    transition: 0.3s;
+}
+
+.btn-pager:disabled {
+    background-color: #713847;
+    cursor: not-allowed;
+}
+
+.pager {
+    display: flex;
+    gap: 1rem;
+}
