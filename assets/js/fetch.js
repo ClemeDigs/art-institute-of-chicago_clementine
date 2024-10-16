@@ -17,8 +17,6 @@ const inputSearch = document.querySelector('#search');
  * @type {HTMLElement}
  */
 const btnSearch = document.querySelector('.btn-search');
-
-
 /**
  * @type {Modal}
  */
@@ -54,11 +52,8 @@ function fetchList(url) {
             cardContainer.innerHTML = '';
 
             data.data.forEach(item => {
-                /**
-                 * @type {HTMLElement}
-                 */
                 const cardHtml = createCard(item);
-                cardContainer.innerHTML += cardHtml;
+                cardContainer.appendChild(cardHtml);
 
                 if (!item.image_id) {
                     fetchArtDetails(item.api_link, item.id);
@@ -81,13 +76,29 @@ function fetchList(url) {
  * @returns {HTMLElement}
  */
 function createCard(artwork) {
-    return `
-        <div class="card" id="card-${artwork.id}">
-            <h3>${artwork.title}</h3>
-            <img class="img-card" src="../assets/img/logo.svg" alt="Image placeholder" id="img-${artwork.id}" />
-            <button class="btn-primary btn-more" data-url="${artwork.api_link}">More</button>
-        </div>
-    `;
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.id = `card-${artwork.id}`;
+
+    const title = document.createElement('h3');
+    title.textContent = artwork.title;
+
+    const img = document.createElement('img');
+    img.classList.add('img-card');
+    img.src = '../assets/img/logo.svg';
+    img.alt = 'Image placeholder';
+    img.id = `img-${artwork.id}`;
+
+    const btn = document.createElement('button');
+    btn.classList.add('btn-primary', 'btn-more');
+    btn.textContent = 'More';
+    btn.setAttribute('data-url', artwork.api_link);
+
+    card.appendChild(title);
+    card.appendChild(img);
+    card.appendChild(btn);
+
+    return card;
 }
 
 /**
