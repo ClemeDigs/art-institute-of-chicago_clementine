@@ -27,7 +27,7 @@ const modal = new Modal('.modal');
 let currentSearchValue = '';
 
 
-/** Initialisation de la pagination avec un appel initial
+/** Initialisation de la pagination avec un appel initial.  Elle gère la pagination avec une page courante de 1 et un nombre total de pages. La fonction callback passe à fetchList l'URL mise à jour avec le paramètre page
  * @type {Pager}
  */
 const pager = new Pager(document.querySelector('.pager'), 1, 1, (page) => {
@@ -49,12 +49,14 @@ function fetchList(url) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+
             cardContainer.innerHTML = '';
 
             data.data.forEach(item => {
                 const cardHtml = createCard(item);
                 cardContainer.appendChild(cardHtml);
 
+                //Si l'œuvre n'a pas d'image (image_id), elle appelle fetchArtDetails pour obtenir plus de détails. Sinon, elle met à jour l'image de la carte via updateCardImage.
                 if (!item.image_id) {
                     fetchArtDetails(item.api_link, item.id);
                 } else {
@@ -118,6 +120,7 @@ function addModalEventListeners() {
 }
 
 /**
+ * Cette fonction met à jour l'image de la carte donnée en fonction de l'ID de l'œuvre et de son image_id. Elle remplace l'image placeholder avec l'image réelle de l'œuvre récupérée de l'API.
  * @returns {void}
  */
 function updateCardImage(artworkId, imageId) {
@@ -216,6 +219,7 @@ function updateModalContent(artwork) {
  */
 function createList(items, defaultValue = 'Unknown') {
     if (Array.isArray(items) && items.length > 0) {
+        // Utilise la méthode map pour transformer chaque élément du tableau items en une chaîne de caractères au format <li>item</li>, .join('') transforme le tableau résultant d'éléments HTML <li> en une chaîne unique
         return items.map(item => `<li>${item}</li>`).join('');
     } else {
         return `<li>${defaultValue}</li>`;

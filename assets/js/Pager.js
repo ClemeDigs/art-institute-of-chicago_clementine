@@ -3,7 +3,7 @@ export default class Pager {
      * @param {HTMLElement} pagerElement
      * @param {number} currentPage
      * @param {number} totalPages
-     * @param {function(number): void} onPageChange - La fonction à appeler lorsque la page change
+     * @param {function(number): void} onPageChange - Fonction qui sera appelée lorsqu'il y aura un changement de page, en prenant en paramètre le numéro de la nouvelle page.
      */
     constructor(pagerElement, currentPage, totalPages, onPageChange) {
         /**
@@ -21,7 +21,7 @@ export default class Pager {
         /**
          * @type {function(number): void}
          */
-        this.onPageChange = onPageChange; // Fonction callback appelée lors du changement de page
+        this.onPageChange = onPageChange; // Stocke la fonction de rappel pour gérer le changement de page.
         this.init();
     }
 
