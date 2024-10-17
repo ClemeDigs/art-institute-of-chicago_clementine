@@ -41,10 +41,21 @@ btnSearch.addEventListener('click', () => {
     fetchList(`https://api.artic.edu/api/v1/artworks/search?q=${currentSearchValue}&page=1`);
 
 
-/*     let savedValues = [];
-    const oldValues = JSON.parse(localStorage.getItem('savedValues') || '[]');
-    savedValues = oldValues.concat(currentSearchValue);
-    localStorage.setItem('savedValues', JSON.stringify(savedValues)); */
+    let savedValues = JSON.parse(localStorage.getItem('savedValues') || '[]');
+    savedValues.push(currentSearchValue);
+    localStorage.setItem('savedValues', JSON.stringify(savedValues));
+
+    const searchValuesHtml = document.querySelector('.search-values');
+    const ulHtml = document.createElement('ul');
+    searchValuesHtml.innerHTML = '';
+
+    savedValues.forEach(savedValue => {
+        const liHtml = document.createElement('li');
+        liHtml.textContent = savedValue;
+        ulHtml.appendChild(liHtml)
+    });
+    
+    searchValuesHtml.appendChild(ulHtml);
 });
 
 /**
