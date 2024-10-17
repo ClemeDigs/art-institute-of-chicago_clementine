@@ -39,6 +39,12 @@ btnSearch.addEventListener('click', () => {
     currentSearchValue = inputSearch.value;
     pager.resetCurrentPage();
     fetchList(`https://api.artic.edu/api/v1/artworks/search?q=${currentSearchValue}&page=1`);
+
+
+/*     let savedValues = [];
+    const oldValues = JSON.parse(localStorage.getItem('savedValues') || '[]');
+    savedValues = oldValues.concat(currentSearchValue);
+    localStorage.setItem('savedValues', JSON.stringify(savedValues)); */
 });
 
 /**
@@ -49,6 +55,7 @@ function fetchList(url) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+
 
             cardContainer.innerHTML = '';
 
